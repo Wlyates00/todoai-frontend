@@ -1,54 +1,81 @@
-# React + TypeScript + Vite
+# TodoAI Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React-based frontend for TodoAI. It allows users to create and analyze todo items with a project based structure. This frontend connects to the [TodoAIAPI backend](https://github.com/Wlyates00/todoai-api).
 
-Currently, two official plugins are available:
+## 🧱 Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-  **React** (with Vite)
+-  **TypeScript**
+-  **Tailwind CSS**
+-  **LocalStorage** for persisting projects
+-  **Supabase Authentication** for users to login/signup
+-  **Fetch API** to call the backend
 
-## Expanding the ESLint configuration
+## 📁 Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+├── index.html                     # Main HTML file served by Vite
+├── package.json                   # Project metadata & dependencies
+├── public/                        # Static assets (None yet)
+├── tailwind.config.js             # Tailwind config (Not Required)
+├── vite.config.ts                 # Vite configuration file (Plugins)
+├── src/
+│   ├── App.tsx                    # Root component with routes
+│   ├── AuthPage.tsx               # Page to handle user authentication
+│   ├── ProjectPage.tsx            # Main view for using TodoAI
+│   ├── TaskPage.tsx               # Component for displaying task lists & cards
+│   ├── components/
+│   │   ├── DarkModeToggle.tsx     # Toggle for light & dark mode
+│   │   ├── EditableTodoItem.tsx   # Editable task item component
+│   │   ├── Sidebar.tsx            # Sidebar component for project navigation
+│   │   └── Welcome.tsx            # Welcome page for shing info and login
+│   ├── main.tsx                   # Application entry point
+│   └── vite-env.d.ts              # Vite specific TypeScript definitions
+└── package.json                   # (duplicate) - already listed above
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🛠 Prerequisites
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+-  Node.js (v18 or later)
+-  A running instance of the [TodoAIAPI backend](https://github.com/Wlyates00/todoai-api)
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🚀 Installation & Running
+
+1. **Clone the repo:**
+
+```bash
+git clone https://github.com/Wlyates00/todoai-frontend
+cd todoai-frontend
 ```
+
+2. **Install dependencies:**
+
+```bash
+npm install
+```
+
+3. **Run the dev server:**
+
+```bash
+npm run dev
+```
+
+> The app will be hosted at `http://localhost:5173`.
+
+## 🔗 Backend Connection
+
+-  The frontend sends `POST` requests to `http://localhost:8080/create-todo`
+-  Make sure your backend supports CORS from `http://localhost:5173`
+
+## 💡 Features
+
+Users can:
+
+-  Create multiple todo projects
+-  Add notes and task lists to each project
+-  AI analysis of todo items via backend
+-  Persistent state using LocalStorage
+
+## 🧪 Testing
+
+You can use your browser or DevTools to test functionality. For full testing, make sure the backend is running and accessible.
